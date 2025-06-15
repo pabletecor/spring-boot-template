@@ -34,7 +34,7 @@ class TransferenciaController {
         this.transferenciaService = transferenciaService;
     }
 
-    @PostMapping
+    @PostMapping("/transferir")
     public ResponseEntity<?> transferir(@RequestBody TransferenciaDTO dto) {
         try {
             Movimiento movimiento = transferenciaService.transferir(dto);
