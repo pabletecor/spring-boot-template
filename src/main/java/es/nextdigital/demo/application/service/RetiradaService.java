@@ -4,6 +4,7 @@ import es.nextdigital.demo.adapter.in.rest.dto.RetiradaDTO;
 import es.nextdigital.demo.adapter.out.repositories.*;
 import es.nextdigital.demo.application.models.*;
 import es.nextdigital.demo.application.models.enums.TipoMovimiento;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class RetiradaService {
         this.cuentaRepo = cuentaRepo;
     }
 
+    @Transactional
     public Movimiento retirar(RetiradaDTO dto) {
         Tarjeta tarjeta = tarjetaRepo.findByNumero(dto.getNumeroTarjeta())
                 .orElseThrow(() -> new RuntimeException("Tarjeta no encontrada"));
