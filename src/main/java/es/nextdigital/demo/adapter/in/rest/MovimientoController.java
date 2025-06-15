@@ -36,9 +36,9 @@ class MovimientoController {
     }
 
     @GetMapping("/obtenerMovimientos")
-    public List<MovimientoDTO> obtenerMovimientos(@RequestParam Long cuentaId) {
+    public List<MovimientoDTO> obtenerMovimientos(@RequestParam Long cuentaId, @RequestParam String pin) {
         //Mapeamos la entidad a DTO para facilitar la comunicación entre front y back
-        List<Movimiento> movimientos = movimientoService.obtenerMovimientosPorCuenta(cuentaId);
+        List<Movimiento> movimientos = movimientoService.obtenerMovimientosPorCuenta(cuentaId, pin);
         return movimientos.stream().map(this::convertirAMovimientoDTO).toList();
     }
 }

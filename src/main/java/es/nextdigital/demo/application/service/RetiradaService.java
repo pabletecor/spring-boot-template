@@ -5,6 +5,7 @@ import es.nextdigital.demo.adapter.out.repositories.*;
 import es.nextdigital.demo.application.models.*;
 import es.nextdigital.demo.application.models.enums.TipoMovimiento;
 import jakarta.transaction.Transactional;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -30,6 +31,10 @@ public class RetiradaService {
                 .orElseThrow(() -> new RuntimeException("Tarjeta no encontrada"));
         if (!tarjeta.isActiva()) {
             throw new RuntimeException("Tarjeta no activada");
+        }
+
+        if (!BCrypt.checkpw(dto.getPin(), tarjeta.getPin())) {
+            throw new RuntimeException("El PIN introducido no es correcto");
         }
 
 
