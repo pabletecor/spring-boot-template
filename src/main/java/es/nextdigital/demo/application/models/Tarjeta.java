@@ -16,6 +16,7 @@ public class Tarjeta {
     private boolean activa;
     private Double limite;
     private Double disponible;
+    private String pin;
 
     @ManyToOne
     private Cuenta cuentaAsociada;
