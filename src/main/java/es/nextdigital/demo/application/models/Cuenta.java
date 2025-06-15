@@ -18,4 +18,7 @@ public class Cuenta {
 
     @OneToMany(mappedBy = "cuenta")
     private List<Movimiento> movimientos;
+
+    @ManyToOne
+    private Banco banco;
 }
